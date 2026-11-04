@@ -1,0 +1,26 @@
+FUNCTION TOPO_SORT(V, E)
+    FOR EACH v IN V
+        indeg[v] <- 0
+    END FOR
+    FOR EACH (u, v) IN E
+        indeg[v] <- indeg[v] + 1
+    END FOR
+    Q <- empty queue
+    FOR EACH v IN V
+        IF indeg[v] = 0
+            ENQUEUE(Q, v)
+        END IF
+    END FOR
+    order <- empty list
+    WHILE Q is not empty
+        u <- DEQUEUE(Q)
+        APPEND(order, u)
+        FOR EACH v IN adj[u]
+            indeg[v] <- indeg[v] - 1
+            IF indeg[v] = 0
+                ENQUEUE(Q, v)
+            END IF
+        END FOR
+    END WHILE
+    RETURN order
+END FUNCTION

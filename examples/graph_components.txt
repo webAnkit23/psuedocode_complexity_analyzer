@@ -1,0 +1,22 @@
+FUNCTION EXPLORE(G, u)
+    visited[u] <- TRUE
+    FOR EACH v IN adj[u]
+        IF NOT visited[v]
+            EXPLORE(G, v)
+        END IF
+    END FOR
+END FUNCTION
+
+FUNCTION COUNT_COMPONENTS(G)
+    count <- 0
+    FOR EACH v IN V
+        visited[v] <- FALSE
+    END FOR
+    FOR EACH v IN V
+        IF NOT visited[v]
+            EXPLORE(G, v)
+            count <- count + 1
+        END IF
+    END FOR
+    RETURN count
+END FUNCTION

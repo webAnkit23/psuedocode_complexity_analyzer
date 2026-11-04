@@ -1,0 +1,20 @@
+FUNCTION DFS_VISIT(G, u)
+    visited[u] <- TRUE
+    FOR EACH v IN adj[u]
+        IF NOT visited[v]
+            parent[v] <- u
+            DFS_VISIT(G, v)
+        END IF
+    END FOR
+END FUNCTION
+
+FUNCTION DFS(G)
+    FOR EACH u IN G.V
+        visited[u] <- FALSE
+    END FOR
+    FOR EACH u IN G.V
+        IF NOT visited[u]
+            DFS_VISIT(G, u)
+        END IF
+    END FOR
+END FUNCTION

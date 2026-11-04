@@ -1,0 +1,18 @@
+FUNCTION PRIM(G, r)
+    FOR EACH u IN V
+        key[u] <- ∞
+        parent[u] <- NIL
+    END FOR
+    key[r] <- 0
+    PQ <- BUILD-HEAP(V)
+    WHILE PQ is not empty
+        u <- EXTRACT-MIN(PQ)
+        FOR EACH (v, w) IN adj[u]
+            IF v IN PQ AND w < key[v]
+                parent[v] <- u
+                key[v] <- w
+                DECREASE-KEY(PQ, v, w)
+            END IF
+        END FOR
+    END WHILE
+END FUNCTION

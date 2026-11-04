@@ -1,0 +1,54 @@
+// loop written with labels and jumps
+FUNCTION COUNT_UP(n)
+    i <- 0
+    top:
+    IF i >= n GOTO done
+    process(i)
+    i <- i + 1
+    GOTO top
+    done:
+    RETURN i
+END FUNCTION
+
+// retry until the value is small enough
+FUNCTION SHRINK(n)
+    again:
+    n <- n / 2
+    IF n > 1 THEN GOTO again
+    RETURN n
+END FUNCTION
+
+// nested: inner loop is a goto loop inside a FOR
+FUNCTION NESTED_GOTO(n)
+    FOR i <- 1 TO n
+        j <- 1
+        inner:
+        IF j > n GOTO next
+        x <- x + 1
+        j <- j + 1
+        GOTO inner
+        next:
+    END FOR
+END FUNCTION
+
+// jumping forward over an expensive block, and dead code after a jump
+FUNCTION SKIP(n)
+    IF n < 0 GOTO finish
+    FOR i <- 1 TO n
+        FOR j <- 1 TO n
+            x <- x + 1
+        END FOR
+    END FOR
+    finish:
+    RETURN 0
+END FUNCTION
+
+// halving with a doubling exit label
+FUNCTION DOUBLING(n)
+    i <- 1
+    loop:
+    IF i >= n GOTO out
+    i <- i * 2
+    GOTO loop
+    out:
+END FUNCTION

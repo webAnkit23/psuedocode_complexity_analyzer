@@ -1,0 +1,14 @@
+FUNCTION KRUSKAL(V, E)
+    A <- empty set
+    FOR EACH v IN V
+        MAKE-SET(v)
+    END FOR
+    sorted_edges <- SORT(E)
+    FOR EACH (u, v, w) IN sorted_edges
+        IF FIND-SET(u) != FIND-SET(v)
+            A <- A ∪ {(u, v)}
+            UNION(u, v)
+        END IF
+    END FOR
+    RETURN A
+END FUNCTION

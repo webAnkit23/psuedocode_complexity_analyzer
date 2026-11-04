@@ -1,0 +1,16 @@
+FUNCTION DIJKSTRA(G, s)
+    FOR EACH v IN V
+        dist[v] <- ∞
+    END FOR
+    dist[s] <- 0
+    PQ <- priority queue containing (0, s)
+    WHILE PQ is not empty
+        (d, u) <- EXTRACT-MIN(PQ)
+        FOR EACH (v, w) IN adj[u]
+            IF dist[u] + w < dist[v]
+                dist[v] <- dist[u] + w
+                INSERT(PQ, (dist[v], v))
+            END IF
+        END FOR
+    END WHILE
+END FUNCTION

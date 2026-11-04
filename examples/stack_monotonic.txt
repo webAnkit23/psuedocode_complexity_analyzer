@@ -1,0 +1,15 @@
+// Monotonic Stack — Next Greater Element
+// Each element is pushed once and popped at most once → O(n) amortized
+
+FUNCTION NEXT_GREATER(A, n)
+    stack = EMPTY_STACK
+    result = new array of size n filled with -1
+    FOR i = 1 TO n
+        WHILE IS_EMPTY(stack) AND A[TOP(stack)] < A[i]
+            idx = POP(stack)
+            result[idx] = A[i]
+        ENDWHILE
+        PUSH(stack, i)
+    ENDFOR
+    RETURN result
+ENDFUNCTION

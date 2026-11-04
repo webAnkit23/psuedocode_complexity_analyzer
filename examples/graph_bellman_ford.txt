@@ -1,0 +1,19 @@
+FUNCTION BELLMAN_FORD(V, E, s)
+    FOR EACH v IN V
+        dist[v] <- ∞
+    END FOR
+    dist[s] <- 0
+    FOR i <- 1 TO |V| - 1
+        FOR EACH (u, v, w) IN E
+            IF dist[u] + w < dist[v]
+                dist[v] <- dist[u] + w
+            END IF
+        END FOR
+    END FOR
+    FOR EACH (u, v, w) IN E
+        IF dist[u] + w < dist[v]
+            RETURN FALSE
+        END IF
+    END FOR
+    RETURN TRUE
+END FUNCTION

@@ -1,0 +1,43 @@
+FUNCTION INORDER(node)
+    IF node = NIL
+        RETURN
+    END IF
+    INORDER(node.left)
+    visit(node)
+    INORDER(node.right)
+END FUNCTION
+
+FUNCTION HEIGHT(node)
+    IF node = NIL
+        RETURN 0
+    END IF
+    RETURN 1 + MAX(HEIGHT(node.left), HEIGHT(node.right))
+END FUNCTION
+
+FUNCTION BST_SEARCH(node, key)
+    IF node = NIL OR node.key = key
+        RETURN node
+    END IF
+    IF key < node.key
+        RETURN BST_SEARCH(node.left, key)
+    ELSE
+        RETURN BST_SEARCH(node.right, key)
+    END IF
+END FUNCTION
+
+FUNCTION COUNT_NODES(root)
+    IF root = NIL THEN RETURN 0
+    total <- 1
+    FOR EACH child IN root.children
+        total <- total + COUNT_NODES(child)
+    END FOR
+    RETURN total
+END FUNCTION
+
+FUNCTION LIST_SEARCH(head, x)
+    p <- head
+    WHILE p != NIL AND p.key != x
+        p <- p.next
+    END WHILE
+    RETURN p
+END FUNCTION

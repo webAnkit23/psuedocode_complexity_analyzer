@@ -1,0 +1,14 @@
+FUNCTION MATRIX_BFS(V, s)
+    Q <- empty queue
+    ENQUEUE(Q, s)
+    visited[s] <- TRUE
+    WHILE Q is not empty
+        u <- DEQUEUE(Q)
+        FOR v <- 1 TO V
+            IF M[u][v] = 1 AND NOT visited[v]
+                visited[v] <- TRUE
+                ENQUEUE(Q, v)
+            END IF
+        END FOR
+    END WHILE
+END FUNCTION

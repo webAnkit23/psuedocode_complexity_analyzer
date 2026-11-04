@@ -1,0 +1,43 @@
+// Binary Search Tree operations
+// Height h = O(log n) for balanced, O(n) worst case
+
+FUNCTION BST_SEARCH(T, k)
+    x = T.root
+    WHILE x != NIL AND x.key != k
+        IF k < x.key THEN
+            x = x.left
+        ELSE
+            x = x.right
+        ENDIF
+    ENDWHILE
+    RETURN x
+ENDFUNCTION
+
+FUNCTION BST_INSERT(T, z)
+    y = NIL
+    x = T.root
+    WHILE x != NIL
+        y = x
+        IF z.key < x.key THEN
+            x = x.left
+        ELSE
+            x = x.right
+        ENDIF
+    ENDWHILE
+    z.parent = y
+    IF y == NIL THEN
+        T.root = z
+    ELSEIF z.key < y.key THEN
+        y.left = z
+    ELSE
+        y.right = z
+    ENDIF
+ENDFUNCTION
+
+FUNCTION INORDER_WALK(x)
+    IF x != NIL THEN
+        INORDER_WALK(x.left)
+        PRINT x.key
+        INORDER_WALK(x.right)
+    ENDIF
+ENDFUNCTION

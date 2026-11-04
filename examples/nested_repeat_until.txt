@@ -1,0 +1,44 @@
+FUNCTION REPEAT_NEST(n)
+    i <- 0
+    REPEAT
+        j <- n
+        REPEAT
+            j <- j / 2
+        UNTIL j <= 1
+        i <- i + 1
+    UNTIL i >= n
+END FUNCTION
+
+FUNCTION REPEAT_WITH_FOR(n)
+    k <- n
+    REPEAT
+        FOR i <- 1 TO k
+            x <- x + 1
+        END FOR
+        k <- k / 2
+    UNTIL k <= 1
+END FUNCTION
+
+FUNCTION REPEAT_GOTO(n)
+    i <- 0
+    REPEAT
+        retry:
+        j <- 0
+        WHILE j < n
+            j <- j + 1
+        END WHILE
+        i <- i + 1
+        IF i < 3 GOTO retry
+    UNTIL i >= n
+END FUNCTION
+
+FUNCTION DO_NEST(n)
+    i <- 1
+    DO
+        j <- 1
+        DO
+            j <- j * 2
+        END DO WHILE j < n
+        i <- i + 1
+    END DO WHILE i <= n
+END FUNCTION

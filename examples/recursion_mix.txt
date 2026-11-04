@@ -1,0 +1,36 @@
+FUNCTION MERGE_SORT(A, lo, hi)
+    IF lo >= hi THEN RETURN
+    mid <- floor((lo + hi) / 2)
+    MERGE_SORT(A, lo, mid)
+    MERGE_SORT(A, mid + 1, hi)
+    FOR i <- lo TO hi
+        B[i] <- A[i]
+    END FOR
+END FUNCTION
+
+FUNCTION FIB(n)
+    IF n <= 1 THEN RETURN n
+    RETURN FIB(n - 1) + FIB(n - 2)
+END FUNCTION
+
+FUNCTION POWER(x, n)
+    IF n = 0 THEN RETURN 1
+    h <- POWER(x, n / 2)
+    RETURN h * h
+END FUNCTION
+
+FUNCTION SUBSETS(i, n)
+    IF i > n
+        RETURN
+    END IF
+    SUBSETS(i + 1, n)
+    SUBSETS(i + 1, n)
+END FUNCTION
+
+FUNCTION SELECT(n)
+    IF n <= 1 THEN RETURN
+    SELECT(n / 2)
+    FOR i <- 1 TO n
+        x <- x + 1
+    END FOR
+END FUNCTION

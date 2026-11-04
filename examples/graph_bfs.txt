@@ -1,0 +1,21 @@
+// Breadth-first search with a queue of tuples
+FUNCTION BFS(G, s)
+    FOR EACH v IN G.V DO
+        visited[v] <- FALSE
+        dist[v] <- ∞
+    END FOR
+    visited[s] <- TRUE
+    dist[s] <- 0
+    Q <- empty queue
+    ENQUEUE(Q, (s, 0))
+    WHILE Q is not empty
+        (u, d) <- DEQUEUE(Q)
+        FOR EACH w IN adj[u]
+            IF NOT visited[w]
+                visited[w] <- TRUE
+                dist[w] <- d + 1
+                ENQUEUE(Q, (w, d + 1))
+            END IF
+        END FOR
+    END WHILE
+END FUNCTION

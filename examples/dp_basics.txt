@@ -1,0 +1,44 @@
+// Dynamic Programming examples
+
+FUNCTION FIBONACCI_DP(n)
+    // Bottom-up 1-D DP  →  O(n)
+    dp = array of size n+1
+    dp[0] = 0
+    dp[1] = 1
+    FOR i = 2 TO n
+        dp[i] = dp[i-1] + dp[i-2]
+    ENDFOR
+    RETURN dp[n]
+ENDFUNCTION
+
+FUNCTION LCS(X, Y, m, n)
+    // Longest Common Subsequence — O(m*n) time, O(m*n) space
+    FOR i = 0 TO m
+        FOR j = 0 TO n
+            IF i == 0 OR j == 0 THEN
+                dp[i][j] = 0
+            ELSEIF X[i] == Y[j] THEN
+                dp[i][j] = dp[i-1][j-1] + 1
+            ELSE
+                dp[i][j] = MAX(dp[i-1][j], dp[i][j-1])
+            ENDIF
+        ENDFOR
+    ENDFOR
+    RETURN dp[m][n]
+ENDFUNCTION
+
+FUNCTION KNAPSACK_01(weights, values, n, W)
+    // 0/1 Knapsack  —  O(n * W)
+    FOR i = 0 TO n
+        FOR w = 0 TO W
+            IF i == 0 OR w == 0 THEN
+                dp[i][w] = 0
+            ELSEIF weights[i] <= w THEN
+                dp[i][w] = MAX(values[i] + dp[i-1][w - weights[i]], dp[i-1][w])
+            ELSE
+                dp[i][w] = dp[i-1][w]
+            ENDIF
+        ENDFOR
+    ENDFOR
+    RETURN dp[n][W]
+ENDFUNCTION

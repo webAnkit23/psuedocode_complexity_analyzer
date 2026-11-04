@@ -1,0 +1,57 @@
+// Two-Pointer / Sliding Window examples
+
+// ── Fixed-size sliding window ──────────────────────────────
+// O(n) — window slides one step at a time; no inner pointer moves
+
+FUNCTION MAX_SUM_SUBARRAY(A, n, k)
+    // Fixed-size window of size k
+    window_sum = 0
+    FOR i = 1 TO k
+        window_sum = window_sum + A[i]
+    ENDFOR
+    max_sum = window_sum
+    FOR i = k + 1 TO n
+        window_sum = window_sum + A[i] - A[i - k]
+        IF window_sum > max_sum THEN
+            max_sum = window_sum
+        ENDIF
+    ENDFOR
+    RETURN max_sum
+ENDFUNCTION
+
+// ── Classic two-pointer: left pointer only moves right ──────
+// O(n) amortized — left pointer advances at most n times in total
+
+FUNCTION TWO_SUM_SORTED(A, n, target)
+    // A is sorted; left and right both move toward each other at most n times
+    left = 1
+    right = n
+    WHILE left < right
+        s = A[left] + A[right]
+        IF s == target THEN
+            RETURN (left, right)
+        ELSEIF s < target THEN
+            left = left + 1
+        ELSE
+            right = right - 1
+        ENDIF
+    ENDWHILE
+    RETURN NOT_FOUND
+ENDFUNCTION
+
+// ── Remove duplicates: fast/slow pointers ───────────────────
+// O(n) — each pointer only moves forward
+
+FUNCTION REMOVE_DUPLICATES(A, n)
+    IF n == 0 THEN
+        RETURN 0
+    ENDIF
+    slow = 1
+    FOR fast = 2 TO n
+        IF A[fast] != A[slow] THEN
+            slow = slow + 1
+            A[slow] = A[fast]
+        ENDIF
+    ENDFOR
+    RETURN slow
+ENDFUNCTION

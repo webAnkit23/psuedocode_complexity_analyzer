@@ -1,0 +1,19 @@
+// Square-root recurrences  (substitution n = 2^m)
+// T(n) = T(sqrt(n)) + 1   =>  O(log log n)
+// T(n) = 2*T(sqrt(n)) + log n  =>  O(log n * log log n)
+
+FUNCTION SQRT_EXAMPLE_1(n)
+    IF n <= 2 THEN
+        RETURN 1
+    ENDIF
+    RETURN SQRT_EXAMPLE_1(SQRT(n)) + 1
+ENDFUNCTION
+
+FUNCTION SQRT_EXAMPLE_2(n)
+    IF n <= 2 THEN
+        RETURN 1
+    ENDIF
+    a = SQRT_EXAMPLE_2(SQRT(n))
+    b = SQRT_EXAMPLE_2(SQRT(n))
+    RETURN a + b + LOG(n)
+ENDFUNCTION

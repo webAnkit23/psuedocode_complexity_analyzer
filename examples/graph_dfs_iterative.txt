@@ -1,0 +1,13 @@
+FUNCTION DFS_ITER(G, s)
+    S <- empty stack
+    PUSH(S, s)
+    WHILE NOT EMPTY(S)
+        u <- POP(S)
+        IF NOT visited[u]
+            visited[u] <- TRUE
+            FOR EACH v IN adj[u]
+                PUSH(S, v)
+            END FOR
+        END IF
+    END WHILE
+END FUNCTION
